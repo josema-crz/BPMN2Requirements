@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="ASCII"?>
+<bpmn2:Definitions xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI-XMI" id="_UTjrIH5HEeSdPeCzNMJ2ew" name="inter" targetNamespace="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI">
+  <rootElements xsi:type="bpmn2:Process" id="Process_1" name="Perform process">
+    <laneSets id="LaneSet_1" name="Lane Set 1">
+      <lanes id="Lane_1" flowNodeRefs="StartEvent_1 Task_1 Task_2 BoundaryEvent_1 EndEvent_1 Task_3 EndEvent_2 BoundaryEvent_2 BoundaryEvent_3 Task_4 Task_5 EndEvent_3 IntermediateThrowEvent_2" name="The admin"/>
+    </laneSets>
+    <flowElements xsi:type="bpmn2:StartEvent" id="StartEvent_1" name="Start Event 1" outgoing="SequenceFlow_1"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_1" sourceRef="StartEvent_1" targetRef="Task_1"/>
+    <flowElements xsi:type="bpmn2:Task" id="Task_1" name="Perform task one" incoming="SequenceFlow_1" outgoing="SequenceFlow_2"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_2" sourceRef="Task_1" targetRef="Task_2"/>
+    <flowElements xsi:type="bpmn2:Task" id="Task_2" name="Perform task 2" incoming="SequenceFlow_2" outgoing="SequenceFlow_3"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_3" sourceRef="Task_2" targetRef="EndEvent_1"/>
+    <flowElements xsi:type="bpmn2:BoundaryEvent" id="BoundaryEvent_1" name="Stop message" outgoing="SequenceFlow_4" attachedToRef="Task_2">
+      <eventDefinitions xsi:type="bpmn2:MessageEventDefinition" id="MessageEventDefinition_1"/>
+    </flowElements>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_4" sourceRef="BoundaryEvent_1" targetRef="Task_3"/>
+    <flowElements xsi:type="bpmn2:EndEvent" id="EndEvent_1" name="End Event 1" incoming="SequenceFlow_3"/>
+    <flowElements xsi:type="bpmn2:Task" id="Task_3" name="Perform interrupting task" incoming="SequenceFlow_4" outgoing="SequenceFlow_5"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_5" sourceRef="Task_3" targetRef="EndEvent_2"/>
+    <flowElements xsi:type="bpmn2:EndEvent" id="EndEvent_2" name="End Event 2" incoming="SequenceFlow_5"/>
+    <flowElements xsi:type="bpmn2:BoundaryEvent" id="BoundaryEvent_2" name="System exception" outgoing="SequenceFlow_6" attachedToRef="Task_2">
+      <eventDefinitions xsi:type="bpmn2:ErrorEventDefinition" id="ErrorEventDefinition_1"/>
+    </flowElements>
+    <flowElements xsi:type="bpmn2:BoundaryEvent" id="BoundaryEvent_3" name="After 1 hour" outgoing="SequenceFlow_9" attachedToRef="Task_2" cancelActivity="false">
+      <eventDefinitions xsi:type="bpmn2:TimerEventDefinition" id="TimerEventDefinition_1"/>
+    </flowElements>
+    <flowElements xsi:type="bpmn2:Task" id="Task_4" name="Notify exception" incoming="SequenceFlow_6" outgoing="SequenceFlow_11"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_6" sourceRef="BoundaryEvent_2" targetRef="Task_4"/>
+    <flowElements xsi:type="bpmn2:Task" id="Task_5" name="Perform undoing task" incoming="SequenceFlow_9" outgoing="SequenceFlow_10"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_9" sourceRef="BoundaryEvent_3" targetRef="Task_5"/>
+    <flowElements xsi:type="bpmn2:EndEvent" id="EndEvent_3" name="End Event 3" incoming="SequenceFlow_10"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_10" sourceRef="Task_5" targetRef="EndEvent_3"/>
+    <flowElements xsi:type="bpmn2:IntermediateThrowEvent" id="IntermediateThrowEvent_2" name="Error occurred" incoming="SequenceFlow_11">
+      <eventDefinitions xsi:type="bpmn2:SignalEventDefinition" id="SignalEventDefinition_1"/>
+    </flowElements>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_11" sourceRef="Task_4" targetRef="IntermediateThrowEvent_2"/>
+  </rootElements>
+  <diagrams id="BPMNDiagram_1" name="inter">
+    <plane id="BPMNPlane_1">
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_Lane_1" isHorizontal="true">
+        <bounds height="321.0" width="748.0" x="83.0" y="230.0"/>
+        <bpmnElement href="Inter.bpmn2#Lane_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_StartEvent_1">
+        <bounds height="36.0" width="36.0" x="140.0" y="360.0"/>
+        <bpmnElement href="Inter.bpmn2#StartEvent_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_EndEvent_1">
+        <bounds height="36.0" width="36.0" x="666.0" y="367.0"/>
+        <bpmnElement href="Inter.bpmn2#EndEvent_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_EndEvent_2">
+        <bounds height="36.0" width="36.0" x="666.0" y="477.0"/>
+        <bpmnElement href="Inter.bpmn2#EndEvent_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_Task_1">
+        <bounds height="50.0" width="110.0" x="240.0" y="360.0"/>
+        <bpmnElement href="Inter.bpmn2#Task_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_Task_2">
+        <bounds height="50.0" width="110.0" x="430.0" y="360.0"/>
+        <bpmnElement href="Inter.bpmn2#Task_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_BoundaryEvent_1">
+        <bounds height="36.0" width="36.0" x="472.0" y="392.0"/>
+        <bpmnElement href="Inter.bpmn2#BoundaryEvent_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_Task_3">
+        <bounds height="50.0" width="110.0" x="430.0" y="470.0"/>
+        <bpmnElement href="Inter.bpmn2#Task_3"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_BoundaryEvent_2">
+        <bounds height="36.0" width="36.0" x="432.0" y="392.0"/>
+        <bpmnElement href="Inter.bpmn2#BoundaryEvent_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_BoundaryEvent_3">
+        <bounds height="36.0" width="36.0" x="504.0" y="342.0"/>
+        <bpmnElement href="Inter.bpmn2#BoundaryEvent_3"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_Task_4">
+        <bounds height="50.0" width="110.0" x="270.0" y="470.0"/>
+        <bpmnElement href="Inter.bpmn2#Task_4"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_Task_5">
+        <bounds height="50.0" width="110.0" x="550.0" y="270.0"/>
+        <bpmnElement href="Inter.bpmn2#Task_5"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_EndEvent_3">
+        <bounds height="36.0" width="36.0" x="715.0" y="272.0"/>
+        <bpmnElement href="Inter.bpmn2#EndEvent_3"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_IntermediateThrowEvent_2">
+        <bounds height="36.0" width="36.0" x="145.0" y="472.0"/>
+        <bpmnElement href="Inter.bpmn2#IntermediateThrowEvent_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_1">
+        <waypoint x="176.0" y="378.0"/>
+        <waypoint x="220.0" y="378.0"/>
+        <waypoint x="220.0" y="385.0"/>
+        <waypoint x="240.0" y="385.0"/>
+        <bpmnElement href="Inter.bpmn2#SequenceFlow_1"/>
+        <sourceElement href="Inter.bpmn2#BPMNShape_StartEvent_1"/>
+        <targetElement href="Inter.bpmn2#BPMNShape_Task_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_2">
+        <waypoint x="350.0" y="385.0"/>
+        <waypoint x="410.0" y="385.0"/>
+        <waypoint x="410.0" y="385.0"/>
+        <waypoint x="430.0" y="385.0"/>
+        <bpmnElement href="Inter.bpmn2#SequenceFlow_2"/>
+        <sourceElement href="Inter.bpmn2#BPMNShape_Task_1"/>
+        <targetElement href="Inter.bpmn2#BPMNShape_Task_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_3">
+        <waypoint x="540.0" y="385.0"/>
+        <waypoint x="646.0" y="385.0"/>
+        <waypoint x="646.0" y="385.0"/>
+        <waypoint x="666.0" y="385.0"/>
+        <bpmnElement href="Inter.bpmn2#SequenceFlow_3"/>
+        <sourceElement href="Inter.bpmn2#BPMNShape_Task_2"/>
+        <targetElement href="Inter.bpmn2#BPMNShape_EndEvent_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_4">
+        <waypoint x="490.0" y="428.0"/>
+        <waypoint x="490.0" y="446.0"/>
+        <waypoint x="485.0" y="446.0"/>
+        <waypoint x="485.0" y="470.0"/>
+        <bpmnElement href="Inter.bpmn2#SequenceFlow_4"/>
+        <sourceElement href="Inter.bpmn2#BPMNShape_BoundaryEvent_1"/>
+        <targetElement href="Inter.bpmn2#BPMNShape_Task_3"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_5">
+        <waypoint x="540.0" y="495.0"/>
+        <waypoint x="646.0" y="495.0"/>
+        <waypoint x="646.0" y="495.0"/>
+        <waypoint x="666.0" y="495.0"/>
+        <bpmnElement href="Inter.bpmn2#SequenceFlow_5"/>
+        <sourceElement href="Inter.bpmn2#BPMNShape_Task_3"/>
+        <targetElement href="Inter.bpmn2#BPMNShape_EndEvent_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_6">
+        <waypoint x="450.0" y="428.0"/>
+        <waypoint x="450.0" y="446.0"/>
+        <waypoint x="325.0" y="446.0"/>
+        <waypoint x="325.0" y="470.0"/>
+        <bpmnElement href="Inter.bpmn2#SequenceFlow_6"/>
+        <sourceElement href="Inter.bpmn2#BPMNShape_BoundaryEvent_2"/>
+        <targetElement href="Inter.bpmn2#BPMNShape_Task_4"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_9">
+        <waypoint x="522.0" y="343.0"/>
+        <waypoint x="522.0" y="295.0"/>
+        <waypoint x="550.0" y="295.0"/>
+        <bpmnElement href="Inter.bpmn2#SequenceFlow_9"/>
+        <sourceElement href="Inter.bpmn2#BPMNShape_BoundaryEvent_3"/>
+        <targetElement href="Inter.bpmn2#BPMNShape_Task_5"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_10">
+        <waypoint x="660.0" y="295.0"/>
+        <waypoint x="700.0" y="295.0"/>
+        <waypoint x="700.0" y="290.0"/>
+        <waypoint x="715.0" y="290.0"/>
+        <bpmnElement href="Inter.bpmn2#SequenceFlow_10"/>
+        <sourceElement href="Inter.bpmn2#BPMNShape_Task_5"/>
+        <targetElement href="Inter.bpmn2#BPMNShape_EndEvent_3"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_11">
+        <waypoint x="270.0" y="495.0"/>
+        <waypoint x="230.0" y="495.0"/>
+        <waypoint x="230.0" y="490.0"/>
+        <waypoint x="181.0" y="490.0"/>
+        <bpmnElement href="Inter.bpmn2#SequenceFlow_11"/>
+        <sourceElement href="Inter.bpmn2#BPMNShape_Task_4"/>
+        <targetElement href="Inter.bpmn2#BPMNShape_IntermediateThrowEvent_2"/>
+      </planeElement>
+      <bpmnElement href="Inter.bpmn2#Process_1"/>
+    </plane>
+  </diagrams>
+</bpmn2:Definitions>

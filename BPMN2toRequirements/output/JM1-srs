@@ -1,0 +1,14 @@
+	R1. The system must send a contract.	
+	R1.1. The education center's responsible must refuse the gateway establishment request if the contract is no accepted. As a result, the message "establishment refusal" must be sent.	
+	R1.2. The administrator must perform the following tasks.	
+	R1.2.1. The administrator must instantiate the gateway agreement contract when the message "request accepted" is received.	
+	R1.2.2. The administrator must send the contract, making use of the contract digitally signed by TicTae. As a result, the message "contract received" must be sent.	
+	R1.3. The education center's responsible must accept the request if the request is accepted. As a result, the message "request accepted" must be sent.	
+	R1.4. The education center's responsible must read and analyze the contract when the message "contract received" is received.	
+	R1.5. The education center's responsible must send the signed contract if the contract is accepted, making use of the contract signed by TicTae and the education center. As a result, the message "establishment approval" must be sent.	
+	R1.6. The administrator must send the TicTae gateway request. As a result, the message "gateway request" must be sent.	
+	R1.7. The administrator must perform the following tasks.	
+	R1.7.1. The administrator must store the contract when the message "establishment approval" is received, making use of the TicTae database.	
+	R1.7.2. The administrator must establish the gateway.	
+	
+

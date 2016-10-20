@@ -1,0 +1,16 @@
+	R1. The system must do the applier-education center authorization.	
+	R1.1. The education center must apply filters to the established gateway if there aren't students left to notify.	
+	R1.2. The education center must create the education center's student list, making use of the center's list of students.	
+	R1.3. The education center must add the student to the list of students that authorize the data transfer, making use of list of students that authorize the data transfer.	
+	R1.4. The job applier must read the data transfer authorization.	
+	R1.5. The education center must send the data transfer notification.	
+		To do so, one of the following alternatives must be chosen:
+	R1.5.1. The education center must include the notification in the enrollment if it's a new student.	
+	R1.5.2. The education center must send a Virtual Branch notification if it's a current student.	
+	R1.5.3. The education center must send communication instance if it's an old student.	
+	R1.6. The job applier must resolve the data transfer request.	
+		To do so, one of the following alternatives must be chosen:
+	R1.6.1. The job applier must deny the data transfer authorization if the data transfer is not accepted.	
+	R1.6.2. The job applier must accept the data transfer authorization if the data transfer is accepted.	
+	
+

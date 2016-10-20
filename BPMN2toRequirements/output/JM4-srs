@@ -1,0 +1,14 @@
+	R1. The system must notify the changes in TicTae.	
+	R1.1. The administrator must cancel the gateway until further notice if the changes are not accepted.	
+	R1.2. The administrator must notify the changes when the message "change in TicTae" is received.	
+		To do so, one of the following alternatives must be chosen:
+	R1.2.1. The administrator must perform generic task (Check the contract - Modify the contract with the new changes - Notify the changes appending the contract).	
+	R1.2.1.1. The administrator must check the contract if the contract is modified, making use of ticTae Database.	
+	R1.2.1.2. The administrator must modify the contract with the new changes.	
+	R1.2.1.3. The administrator must notify the changes appending the contract, making use of the changed contract.	
+	R1.2.2. The administrator must notify the changes directly if the contract is not modified.	
+	R1.3. The education center must notify the acceptance of the changes if the changes are accepted, making use of the contract signed by the education center.	
+	R1.4. The administrator must update the contract if the contract is received, making use of ticTae Database.	
+	R1.5. The education center must analyze the changes.	
+	
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:taskbusinessprocess="http://taskbusinessprocess/1.0">
+  <taskbusinessprocess:Task name="Process_1" text="Process a LOPD update or modification" actor="The system" sequentialChildren="/1 /3 /4 /5 /6 /7"/>
+  <taskbusinessprocess:Task name="ManualTask_1" text="Analyze the LOPD changes" actor="The administrator" sequentialParent="/0" previousEvent="/2"/>
+  <taskbusinessprocess:MessageEvent name="StartEvent_1" beforeTask="/1" text="LOPD changed"/>
+  <taskbusinessprocess:Task name="Task_2" text="Cancel the gateway until further notice" actor="The administrator" sequentialParent="/0">
+    <preconditions text="The gateway changes are not accepted"/>
+  </taskbusinessprocess:Task>
+  <taskbusinessprocess:Task name="Task_1" text="Make gateway changes" actor="The administrator" sequentialParent="/0">
+    <preconditions text="The gateway changes are accepted"/>
+  </taskbusinessprocess:Task>
+  <taskbusinessprocess:Task name="UserTask_1" text="Notify the changes in LOPD and the gateway to the education center" actor="The administrator" sequentialParent="/0"/>
+  <taskbusinessprocess:Task name="ManualTask_3" text="Analyze the gateway changes" actor="The education center's responsible" sequentialParent="/0"/>
+  <taskbusinessprocess:Task name="ManualTask_2" text="Analyze the LOPD changes" actor="The education center's responsible" sequentialParent="/0"/>
+</xmi:XMI>

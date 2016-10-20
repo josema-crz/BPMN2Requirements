@@ -1,0 +1,74 @@
+[% for (task in Task.allInstances().select(t : Task | t.sequentialParent.isUndefined() and t.alternativeParent.isUndefined())) { %]
+	[% task.getText("R1."); %]
+[% } %]	
+
+[% operation Task getText(header : String) { %]
+	[%=header%] [%=self.actor%] must [%=self.text.firstToLowerCase()%][%if (self.previousEvent.isDefined()) { self.previousEvent.getIncomingText(); } if (not self.preconditions.isEmpty()) {%] if [%=self.preconditions.collect(pre : Precondition | pre.text.firstToLowerCase()).concat(" or ")%][%} if (not self.artifactsUsed.isEmpty()) {%], making use of [%=self.artifactsUsed.collect(artifact : Artifact | artifact.text.firstToLowerCase()).concat(" and ")%][%}%].[%if (self.followingEvent.isDefined()) { self.followingEvent.getFollowingText(); }%]
+	
+	[%  self.getChildrenText(header); %]
+[% } %]
+
+[% operation Task getDuringText(header : String) { %]
+	[%=header%][% self.previousEvent.getDuringText(); %][%=self.actor.firstToLowerCase()%] must [%=self.text.firstToLowerCase()%][% if (not self.preconditions.isEmpty()) {%] if [%=self.preconditions.first().text.firstToLowerCase()%][%} if (not self.artifactsUsed.isEmpty()) {%], making use of [%=self.artifactsUsed.collect(artifact : Artifact | artifact.text.firstToLowerCase()).concat(" and ")%][%}%].[%if (self.followingEvent.isDefined()) { self.followingEvent.getFollowingText(); } %]
+	
+	[%  self.getChildrenText(header); %]
+[% } %]
+
+[% operation Task getChildrenText(header : String) {
+	var counter = 1;		
+	for (task in self.sequentialChildren) {
+		task.getText(header+counter+".");
+		counter = counter+1;
+	}
+	if (not self.alternativeChildren.isEmpty()) {
+		if (not self.duringEvents.isEmpty()) {
+			for (task in self.alternativeChildren) {
+				task.getDuringText(header+counter+".");
+				counter = counter+1;
+			}
+		}
+		else { %]
+		To do so, one of the following alternatives must be chosen:
+		[%	for (task in self.alternativeChildren) {
+				task.getText(header+counter+".");
+				counter = counter+1;
+			}
+		}	
+	}
+} %]
+	
+[% operation MessageEvent getIncomingText() { %]
+ when the message "[%=self.text.firstToLowerCase()%]" is received[% } %]
+ 
+[% operation MessageEvent getFollowingText() { %]
+ As a result, the message "[%=self.text.firstToLowerCase()%]" must be sent.[% } %]
+
+[% operation MessageEvent getDuringText() { %]
+ If the message "[%=self.text.firstToLowerCase()%]" is received while [%=self.duringTask.text.firstToLowerCase().split(' ').first() + 'ing' + self.duringTask.text.substring(self.duringTask.text.split(' ').first().length())%], [% if (self.interrupting) {%]this task must be cancelled and [% } %][% } %]
+
+[% operation SignalEvent getIncomingText() { %]
+ when the signal "[%=self.text.firstToLowerCase()%]" is received[% } %]
+ 
+[% operation SignalEvent getFollowingText() { %]
+ As a result, the signal "[%=self.text.firstToLowerCase()%]" must be sent.[% } %]
+
+[% operation SignalEvent getDuringText() { %]
+ If the signal "[%=self.text.firstToLowerCase()%]" is received while [%=self.duringTask.text.firstToLowerCase().split(' ').first() + 'ing' + self.duringTask.text.substring(self.duringTask.text.split(' ').first().length())%], [% if (self.interrupting) {%]this task must be cancelled and [% } %][% } %]
+ 
+[% operation ConditionalEvent getIncomingText() { %]
+ when the condition "[%=self.text.firstToLowerCase()%]" is met[% } %]
+ 
+[% operation ConditionalEvent getDuringText() { %]
+ If the condition "[%=self.text.firstToLowerCase()%]" is met while [%=self.duringTask.text.firstToLowerCase().split(' ').first() + 'ing' + self.duringTask.text.substring(self.duringTask.text.split(' ').first().length())%], [% if (self.interrupting) {%]this task must be cancelled and [% } %][% } %]
+ 
+[% operation TimerEvent getIncomingText() { %]
+ [%=self.text%][% } %]
+ 
+[% operation TimerEvent getDuringText() { %]
+ [%=self.text%] [%=self.duringTask.text.firstToLowerCase().split(' ').first() + 'ing' + self.duringTask.text.substring(self.duringTask.text.split(' ').first().length())%], [% if (self.interrupting) {%]this task must be cancelled and [% } %][% } %]
+ 
+[% operation ErrorEvent getDuringText() { %]
+ If the error "[%=self.text.firstToLowerCase()%]" happens while [%=self.duringTask.text.firstToLowerCase().split(' ').first() + 'ing' + self.duringTask.text.substring(self.duringTask.text.split(' ').first().length())%], this task must be cancelled and [% } %]
+ 
+[% operation CompensateEvent getDuringText() { %]
+ To revert the result of [%=self.duringTask.text.firstToLowerCase().split(' ').first() + 'ing' + self.duringTask.text.substring(self.duringTask.text.split(' ').first().length())%], [% } %]

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:taskbusinessprocess="http://taskbusinessprocess/1.0">
+  <taskbusinessprocess:Task name="Process_1" text="Do the applier-education center authorization" actor="The system" sequentialChildren="/1 /2 /5 /7 /8 /12"/>
+  <taskbusinessprocess:Task name="Task_1" text="Apply filters to the established gateway" actor="The education center" sequentialParent="/0">
+    <preconditions text="There aren't students left to notify"/>
+  </taskbusinessprocess:Task>
+  <taskbusinessprocess:Task name="ManualTask_1" text="Create the education center's student list" actor="The education center" sequentialParent="/0" artifactsUsed="/3"/>
+  <taskbusinessprocess:DataObject name="DataObject_1" text="The center's list of students"/>
+  <taskbusinessprocess:Task name="ManualTask_7" text="Accept the data transfer authorization" actor="The job applier" alternativeParent="/12">
+    <preconditions text="The data transfer is accepted"/>
+  </taskbusinessprocess:Task>
+  <taskbusinessprocess:Task name="ManualTask_8" text="Add the student to the list of students that authorize the data transfer" actor="The education center" sequentialParent="/0" artifactsUsed="/6"/>
+  <taskbusinessprocess:DataObject name="DataObject_2" text="List of students that authorize the data transfer"/>
+  <taskbusinessprocess:Task name="ManualTask_5" text="Read the data transfer authorization" actor="The job applier" sequentialParent="/0"/>
+  <taskbusinessprocess:Task name="ExclusiveGateway_4" text="Send the data transfer notification" actor="The education center" alternativeChildren="/9 /10 /11" sequentialParent="/0"/>
+  <taskbusinessprocess:Task name="ManualTask_2" text="Include the notification in the enrollment" actor="The education center" alternativeParent="/8">
+    <preconditions text="It's a new student"/>
+  </taskbusinessprocess:Task>
+  <taskbusinessprocess:Task name="ManualTask_4" text="Send a Virtual Branch notification" actor="The education center" alternativeParent="/8">
+    <preconditions text="It's a current student"/>
+  </taskbusinessprocess:Task>
+  <taskbusinessprocess:Task name="ManualTask_3" text="Send communication instance" actor="The education center" alternativeParent="/8">
+    <preconditions text="It's an old student"/>
+  </taskbusinessprocess:Task>
+  <taskbusinessprocess:Task name="ExclusiveGateway_6" text="Resolve the data transfer request" actor="The job applier" alternativeChildren="/13 /4" sequentialParent="/0"/>
+  <taskbusinessprocess:Task name="ManualTask_6" text="Deny the data transfer authorization" actor="The job applier" alternativeParent="/12">
+    <preconditions text="The data transfer is not accepted"/>
+  </taskbusinessprocess:Task>
+  <taskbusinessprocess:MessageEvent name="StartEvent_1" text="TicTae gateway request"/>
+  <taskbusinessprocess:MessageEvent name="IntermediateThrowEvent_1" text="New student registred in TicTae"/>
+</xmi:XMI>

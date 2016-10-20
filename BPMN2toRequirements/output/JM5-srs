@@ -1,0 +1,15 @@
+	R1. The system must notify the changes in the education center.	
+	R1.1. The education center's responsible must notify the changes when the message "change in the education center" is received.	
+		To do so, one of the following alternatives must be chosen:
+	R1.1.1. The education center's responsible must perform generic task (Check the contract - Modify the contract with the new changes - Notify the changes appending the contract).	
+	R1.1.1.1. The education center's responsible must check the contract if the contract is modified, making use of education center's database.	
+	R1.1.1.2. The education center's responsible must modify the contract with the new changes.	
+	R1.1.1.3. The education center's responsible must notify the changes appending the contract, making use of the changed contract signed by TicTae.	
+	R1.1.2. The education center's responsible must notify the changes directly if the contract is not modified.	
+	R1.2. The administrator must update the contract, making use of ticTae database.	
+	R1.3. The education center's responsible must update the contract if the contract is received, making use of education center's database.	
+	R1.4. The administrator must send the agreement on the changes to the education center, making use of the contract signed by TicTae.	
+	R1.5. The administrator must cancel the gateway until further notice if the changes are not accepted.	
+	R1.6. The administrator must analyze the changes.	
+	
+

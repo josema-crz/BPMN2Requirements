@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:taskbusinessprocess="http://taskbusinessprocess/1.0">
+  <taskbusinessprocess:Task name="Process_1" text="Perform process" actor="The system" sequentialChildren="/10"/>
+  <taskbusinessprocess:Task name="Task_2" text="Perform task 2" actor="The admin" alternativeChildren="/5 /6 /8" sequentialParent="/10" duringEvents="/2 /3 /4"/>
+  <taskbusinessprocess:MessageEvent name="BoundaryEvent_1" beforeTask="/5" duringTask="/1" text="Stop message" interrupting="true"/>
+  <taskbusinessprocess:ErrorEvent name="BoundaryEvent_2" beforeTask="/6" duringTask="/1" text="System exception" interrupting="true"/>
+  <taskbusinessprocess:TimerEvent name="BoundaryEvent_3" beforeTask="/8" duringTask="/1" text="After 1 hour"/>
+  <taskbusinessprocess:Task name="Task_3" text="Perform interrupting task" actor="The admin" alternativeParent="/1" previousEvent="/2"/>
+  <taskbusinessprocess:Task name="Task_4" text="Notify exception" actor="The admin" alternativeParent="/1" previousEvent="/3" followingEvent="/7"/>
+  <taskbusinessprocess:SignalEvent name="IntermediateThrowEvent_2" afterTask="/6" text="Error occurred"/>
+  <taskbusinessprocess:Task name="Task_5" text="Perform undoing task" actor="The admin" alternativeParent="/1" previousEvent="/4"/>
+  <taskbusinessprocess:Task name="Task_1" text="Perform task one" actor="The admin" sequentialParent="/10"/>
+  <taskbusinessprocess:Task name="ParentTask_1" text="Perform generic task (Perform task one - Perform task 2)" actor="The admin" sequentialChildren="/9 /1" sequentialParent="/0"/>
+</xmi:XMI>

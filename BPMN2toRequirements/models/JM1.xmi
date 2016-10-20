@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="ASCII"?>
+<bpmn2:Definitions xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI-XMI" id="_HAvmUIBtEeSbmqqSdVuBlA" targetNamespace="http://www.omg.org/spec/BPMN/20100524/MODEL-XMI">
+  <rootElements xsi:type="bpmn2:DataStore" id="DataStore_1" name="Data Store 2"/>
+  <rootElements xsi:type="bpmn2:Process" id="Process_1" name="Send a contract">
+    <laneSets id="LaneSet_1" name="Lane Set 1">
+      <lanes id="Lane_1" flowNodeRefs="ExclusiveGateway_1 UserTask_1 EventBasedGateway_1 IntermediateCatchEvent_1 IntermediateCatchEvent_2 ManualTask_1 UserTask_2 EventBasedGateway_2 IntermediateCatchEvent_3 EndEvent_1 IntermediateCatchEvent_4 ServiceTask_1 UserTask_3 EndEvent_2 ExclusiveGateway_2 StartEvent_1 EndEvent_3 IntermediateThrowEvent_2" name="The administrator"/>
+      <lanes id="Lane_2" flowNodeRefs="IntermediateThrowEvent_1 ExclusiveGateway_3 IntermediateThrowEvent_4 ManualTask_2 EndEvent_4 ExclusiveGateway_5 UserTask_4 IntermediateThrowEvent_3 UserTask_7 UserTask_6 IntermediateThrowEvent_5 IntermediateThrowEvent_6 EndEvent_6" name="The education center's responsible"/>
+    </laneSets>
+    <flowElements xsi:type="bpmn2:ExclusiveGateway" id="ExclusiveGateway_1" incoming="SequenceFlow_1 SequenceFlow_3" outgoing="SequenceFlow_2" gatewayDirection="Converging"/>
+    <flowElements xsi:type="bpmn2:UserTask" id="UserTask_1" name="Send the TicTae gateway request" incoming="SequenceFlow_2" outgoing="SequenceFlow_5 SequenceFlow_19"/>
+    <flowElements xsi:type="bpmn2:EventBasedGateway" id="EventBasedGateway_1" incoming="SequenceFlow_5" outgoing="SequenceFlow_6 SequenceFlow_7" gatewayDirection="Diverging"/>
+    <flowElements xsi:type="bpmn2:IntermediateCatchEvent" id="IntermediateCatchEvent_1" name="Request accepted" incoming="SequenceFlow_7" outgoing="SequenceFlow_9">
+      <eventDefinitions xsi:type="bpmn2:MessageEventDefinition" id="MessageEventDefinition_1"/>
+    </flowElements>
+    <flowElements xsi:type="bpmn2:IntermediateCatchEvent" id="IntermediateCatchEvent_2" name="After 7 days" incoming="SequenceFlow_6" outgoing="SequenceFlow_8">
+      <eventDefinitions xsi:type="bpmn2:TimerEventDefinition" id="TimerEventDefinition_1"/>
+    </flowElements>
+    <flowElements xsi:type="bpmn2:ManualTask" id="ManualTask_1" name="Instantiate the gateway agreement contract" incoming="SequenceFlow_9" outgoing="SequenceFlow_10"/>
+    <flowElements xsi:type="bpmn2:UserTask" id="UserTask_2" name="Send the contract" incoming="SequenceFlow_10" outgoing="SequenceFlow_11 SequenceFlow_23">
+      <ioSpecification id="InputOutputSpecification_3">
+        <dataOutputs id="DataOutput_1" name="output1"/>
+        <inputSets id="InputSet_1"/>
+        <outputSets id="OutputSet_1" dataOutputRefs="DataOutput_1"/>
+      </ioSpecification>
+      <dataOutputAssociations id="DataOutputAssociation_1" sourceRef="DataOutput_1" targetRef="DataObject_1"/>
+    </flowElements>
+    <flowElements xsi:type="bpmn2:DataObject" id="DataObject_1" name="The contract digitally signed by TicTae"/>
+    <flowElements xsi:type="bpmn2:EventBasedGateway" id="EventBasedGateway_2" incoming="SequenceFlow_11" outgoing="SequenceFlow_12 SequenceFlow_13" gatewayDirection="Diverging"/>
+    <flowElements xsi:type="bpmn2:IntermediateCatchEvent" id="IntermediateCatchEvent_3" name="Establishment refusal" incoming="SequenceFlow_13" outgoing="SequenceFlow_14">
+      <eventDefinitions xsi:type="bpmn2:MessageEventDefinition" id="MessageEventDefinition_3"/>
+    </flowElements>
+    <flowElements xsi:type="bpmn2:EndEvent" id="EndEvent_1" incoming="SequenceFlow_14"/>
+    <flowElements xsi:type="bpmn2:IntermediateCatchEvent" id="IntermediateCatchEvent_4" name="Establishment approval" incoming="SequenceFlow_12" outgoing="SequenceFlow_15">
+      <eventDefinitions xsi:type="bpmn2:MessageEventDefinition" id="MessageEventDefinition_2"/>
+    </flowElements>
+    <flowElements xsi:type="bpmn2:ServiceTask" id="ServiceTask_1" name="Store the contract" incoming="SequenceFlow_15" outgoing="SequenceFlow_16">
+      <ioSpecification id="InputOutputSpecification_4">
+        <dataOutputs id="DataOutput_2" name="output1"/>
+        <inputSets id="InputSet_2"/>
+        <outputSets id="OutputSet_2" dataOutputRefs="DataOutput_2"/>
+      </ioSpecification>
+      <dataOutputAssociations id="DataOutputAssociation_2" sourceRef="DataOutput_2" targetRef="_DataStoreReference_2"/>
+    </flowElements>
+    <flowElements xsi:type="bpmn2:UserTask" id="UserTask_3" name="Establish the gateway" incoming="SequenceFlow_16" outgoing="SequenceFlow_17"/>
+    <flowElements xsi:type="bpmn2:EndEvent" id="EndEvent_2" incoming="SequenceFlow_17"/>
+    <flowElements xsi:type="bpmn2:DataStoreReference" id="_DataStoreReference_2" name="The TicTae database">
+      <dataStoreRef href="JM1.bpmn2#DataStore_1"/>
+    </flowElements>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_2" sourceRef="ExclusiveGateway_1" targetRef="UserTask_1"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_5" sourceRef="UserTask_1" targetRef="EventBasedGateway_1"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_6" sourceRef="EventBasedGateway_1" targetRef="IntermediateCatchEvent_2"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_7" sourceRef="EventBasedGateway_1" targetRef="IntermediateCatchEvent_1"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_8" sourceRef="IntermediateCatchEvent_2" targetRef="ExclusiveGateway_2"/>
+    <flowElements xsi:type="bpmn2:ExclusiveGateway" id="ExclusiveGateway_2" incoming="SequenceFlow_8" outgoing="SequenceFlow_3 SequenceFlow_4" gatewayDirection="Diverging"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_3" name="Less than three requests has been sent" sourceRef="ExclusiveGateway_2" targetRef="ExclusiveGateway_1"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_4" name="Three or more requests has been sent" sourceRef="ExclusiveGateway_2" targetRef="EndEvent_3"/>
+    <flowElements xsi:type="bpmn2:StartEvent" id="StartEvent_1" outgoing="SequenceFlow_1"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_1" sourceRef="StartEvent_1" targetRef="ExclusiveGateway_1"/>
+    <flowElements xsi:type="bpmn2:EndEvent" id="EndEvent_3" incoming="SequenceFlow_4"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_9" sourceRef="IntermediateCatchEvent_1" targetRef="ManualTask_1"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_10" sourceRef="ManualTask_1" targetRef="UserTask_2"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_11" sourceRef="UserTask_2" targetRef="EventBasedGateway_2"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_12" sourceRef="EventBasedGateway_2" targetRef="IntermediateCatchEvent_4"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_13" sourceRef="EventBasedGateway_2" targetRef="IntermediateCatchEvent_3"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_14" sourceRef="IntermediateCatchEvent_3" targetRef="EndEvent_1"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_15" sourceRef="IntermediateCatchEvent_4" targetRef="ServiceTask_1"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_16" sourceRef="ServiceTask_1" targetRef="UserTask_3"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_17" sourceRef="UserTask_3" targetRef="EndEvent_2"/>
+    <flowElements xsi:type="bpmn2:IntermediateThrowEvent" id="IntermediateThrowEvent_2" name="Intermediate Throw Event 2"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_19" sourceRef="UserTask_1" targetRef="IntermediateThrowEvent_1"/>
+    <flowElements xsi:type="bpmn2:IntermediateThrowEvent" id="IntermediateThrowEvent_1" name="Gateway request" incoming="SequenceFlow_19" outgoing="SequenceFlow_21">
+      <eventDefinitions xsi:type="bpmn2:MessageEventDefinition" id="MessageEventDefinition_4"/>
+    </flowElements>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_21" sourceRef="IntermediateThrowEvent_1" targetRef="ExclusiveGateway_3"/>
+    <flowElements xsi:type="bpmn2:ExclusiveGateway" id="ExclusiveGateway_3" incoming="SequenceFlow_21" outgoing="SequenceFlow_18 SequenceFlow_28" gatewayDirection="Diverging"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_18" name="The request is accepted" sourceRef="ExclusiveGateway_3" targetRef="UserTask_4"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_23" sourceRef="UserTask_2" targetRef="IntermediateThrowEvent_4"/>
+    <flowElements xsi:type="bpmn2:IntermediateThrowEvent" id="IntermediateThrowEvent_4" name="Contract received" incoming="SequenceFlow_23" outgoing="SequenceFlow_24">
+      <eventDefinitions xsi:type="bpmn2:MessageEventDefinition" id="MessageEventDefinition_6"/>
+    </flowElements>
+    <flowElements xsi:type="bpmn2:ManualTask" id="ManualTask_2" name="Read and analyze the contract" incoming="SequenceFlow_24" outgoing="SequenceFlow_29"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_24" sourceRef="IntermediateThrowEvent_4" targetRef="ManualTask_2"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_28" name="The request is not accepted" sourceRef="ExclusiveGateway_3" targetRef="EndEvent_4"/>
+    <flowElements xsi:type="bpmn2:EndEvent" id="EndEvent_4" incoming="SequenceFlow_28"/>
+    <flowElements xsi:type="bpmn2:ExclusiveGateway" id="ExclusiveGateway_5" incoming="SequenceFlow_29" outgoing="SequenceFlow_30 SequenceFlow_33" gatewayDirection="Diverging"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_29" sourceRef="ManualTask_2" targetRef="ExclusiveGateway_5"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_30" name="The contract is no accepted" sourceRef="ExclusiveGateway_5" targetRef="UserTask_6"/>
+    <flowElements xsi:type="bpmn2:UserTask" id="UserTask_4" name="Accept the request" incoming="SequenceFlow_18" outgoing="SequenceFlow_20"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_20" sourceRef="UserTask_4" targetRef="IntermediateThrowEvent_3"/>
+    <flowElements xsi:type="bpmn2:IntermediateThrowEvent" id="IntermediateThrowEvent_3" name="Request accepted" incoming="SequenceFlow_20">
+      <eventDefinitions xsi:type="bpmn2:MessageEventDefinition" id="MessageEventDefinition_5"/>
+    </flowElements>
+    <flowElements xsi:type="bpmn2:UserTask" id="UserTask_7" name="Send the signed contract" incoming="SequenceFlow_33" outgoing="SequenceFlow_32 SequenceFlow_34">
+      <ioSpecification id="InputOutputSpecification_1">
+        <dataOutputs id="DataOutput_3" name="output1"/>
+        <inputSets id="InputSet_3"/>
+        <outputSets id="OutputSet_3" dataOutputRefs="DataOutput_3"/>
+      </ioSpecification>
+      <dataOutputAssociations id="DataOutputAssociation_3" sourceRef="DataOutput_3" targetRef="DataObject_2"/>
+    </flowElements>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_32" sourceRef="UserTask_7" targetRef="IntermediateThrowEvent_6"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_33" name="The contract is accepted" sourceRef="ExclusiveGateway_5" targetRef="UserTask_7"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_34" sourceRef="UserTask_7" targetRef="EndEvent_6"/>
+    <flowElements xsi:type="bpmn2:UserTask" id="UserTask_6" name="Refuse the gateway establishment request" incoming="SequenceFlow_30" outgoing="SequenceFlow_31"/>
+    <flowElements xsi:type="bpmn2:SequenceFlow" id="SequenceFlow_31" sourceRef="UserTask_6" targetRef="IntermediateThrowEvent_5"/>
+    <flowElements xsi:type="bpmn2:IntermediateThrowEvent" id="IntermediateThrowEvent_5" name="Establishment refusal" incoming="SequenceFlow_31">
+      <eventDefinitions xsi:type="bpmn2:MessageEventDefinition" id="MessageEventDefinition_7"/>
+    </flowElements>
+    <flowElements xsi:type="bpmn2:IntermediateThrowEvent" id="IntermediateThrowEvent_6" name="Establishment approval" incoming="SequenceFlow_32">
+      <eventDefinitions xsi:type="bpmn2:MessageEventDefinition" id="MessageEventDefinition_8"/>
+    </flowElements>
+    <flowElements xsi:type="bpmn2:EndEvent" id="EndEvent_6" incoming="SequenceFlow_34"/>
+    <flowElements xsi:type="bpmn2:DataObject" id="DataObject_2" name="The contract signed by TicTae and the education center"/>
+  </rootElements>
+  <diagrams id="BPMNDiagram_1" name="Send a contract">
+    <plane id="BPMNPlane_1">
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_Lane_1" isHorizontal="true">
+        <bounds height="221.0" width="1731.0" x="40.0" y="90.0"/>
+        <bpmnElement href="JM1.bpmn2#Lane_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_Lane_2" isHorizontal="true">
+        <bounds height="231.0" width="1730.0" x="40.0" y="310.0"/>
+        <bpmnElement href="JM1.bpmn2#Lane_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_StartEvent_1">
+        <bounds height="36.0" width="36.0" x="70.0" y="113.0"/>
+        <bpmnElement href="JM1.bpmn2#StartEvent_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_ExclusiveGateway_1" isMarkerVisible="true">
+        <bounds height="50.0" width="50.0" x="200.0" y="240.0"/>
+        <bpmnElement href="JM1.bpmn2#ExclusiveGateway_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_EventBasedGateway_1">
+        <bounds height="50.0" width="50.0" x="510.0" y="240.0"/>
+        <bpmnElement href="JM1.bpmn2#EventBasedGateway_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_UserTask_1">
+        <bounds height="51.0" width="131.0" x="310.0" y="239.0"/>
+        <bpmnElement href="JM1.bpmn2#UserTask_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_IntermediateCatchEvent_1">
+        <bounds height="36.0" width="36.0" x="642.0" y="242.0"/>
+        <bpmnElement href="JM1.bpmn2#IntermediateCatchEvent_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_IntermediateCatchEvent_2">
+        <bounds height="36.0" width="36.0" x="642.0" y="155.0"/>
+        <bpmnElement href="JM1.bpmn2#IntermediateCatchEvent_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_ManualTask_1">
+        <bounds height="73.0" width="121.0" x="780.0" y="141.0"/>
+        <bpmnElement href="JM1.bpmn2#ManualTask_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_UserTask_2">
+        <bounds height="50.0" width="121.0" x="960.0" y="153.0"/>
+        <bpmnElement href="JM1.bpmn2#UserTask_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_DataObject_1">
+        <bounds height="65.0" width="36.0" x="925.0" y="227.0"/>
+        <bpmnElement href="JM1.bpmn2#DataObject_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_EventBasedGateway_2">
+        <bounds height="50.0" width="50.0" x="1140.0" y="202.0"/>
+        <bpmnElement href="JM1.bpmn2#EventBasedGateway_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_IntermediateCatchEvent_3">
+        <bounds height="36.0" width="36.0" x="1240.0" y="242.0"/>
+        <bpmnElement href="JM1.bpmn2#IntermediateCatchEvent_3"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_EndEvent_1">
+        <bounds height="36.0" width="36.0" x="1342.0" y="242.0"/>
+        <bpmnElement href="JM1.bpmn2#EndEvent_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_IntermediateCatchEvent_4">
+        <bounds height="36.0" width="36.0" x="1240.0" y="141.0"/>
+        <bpmnElement href="JM1.bpmn2#IntermediateCatchEvent_4"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_ServiceTask_1">
+        <bounds height="50.0" width="121.0" x="1450.0" y="134.0"/>
+        <bpmnElement href="JM1.bpmn2#ServiceTask_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_UserTask_3">
+        <bounds height="50.0" width="110.0" x="1620.0" y="134.0"/>
+        <bpmnElement href="JM1.bpmn2#UserTask_3"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_EndEvent_2">
+        <bounds height="36.0" width="36.0" x="1657.0" y="242.0"/>
+        <bpmnElement href="JM1.bpmn2#EndEvent_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_DataStoreReference_1">
+        <bounds height="50.0" width="50.0" x="1486.0" y="227.0"/>
+        <bpmnElement href="JM1.bpmn2#_DataStoreReference_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_EndEvent_3">
+        <bounds height="36.0" width="36.0" x="400.0" y="186.0"/>
+        <bpmnElement href="JM1.bpmn2#EndEvent_3"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_ExclusiveGateway_2" isMarkerVisible="true">
+        <bounds height="50.0" width="50.0" x="340.0" y="113.0"/>
+        <bpmnElement href="JM1.bpmn2#ExclusiveGateway_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_IntermediateThrowEvent_1">
+        <bounds height="36.0" width="36.0" x="350.0" y="360.0"/>
+        <bpmnElement href="JM1.bpmn2#IntermediateThrowEvent_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_IntermediateThrowEvent_2">
+        <bounds height="36.0" width="36.0" x="509.0" y="346.0"/>
+        <bpmnElement href="JM1.bpmn2#IntermediateThrowEvent_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_ExclusiveGateway_3" isMarkerVisible="true">
+        <bounds height="50.0" width="50.0" x="510.0" y="369.0"/>
+        <bpmnElement href="JM1.bpmn2#ExclusiveGateway_3"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_IntermediateThrowEvent_3">
+        <bounds height="36.0" width="36.0" x="772.0" y="446.0"/>
+        <bpmnElement href="JM1.bpmn2#IntermediateThrowEvent_3"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_IntermediateThrowEvent_4">
+        <bounds height="36.0" width="36.0" x="1040.0" y="369.0"/>
+        <bpmnElement href="JM1.bpmn2#IntermediateThrowEvent_4"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_ManualTask_2">
+        <bounds height="50.0" width="110.0" x="1150.0" y="362.0"/>
+        <bpmnElement href="JM1.bpmn2#ManualTask_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_EndEvent_4">
+        <bounds height="36.0" width="36.0" x="517.0" y="478.0"/>
+        <bpmnElement href="JM1.bpmn2#EndEvent_4"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_ExclusiveGateway_5" isMarkerVisible="true">
+        <bounds height="50.0" width="50.0" x="1330.0" y="362.0"/>
+        <bpmnElement href="JM1.bpmn2#ExclusiveGateway_5"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_UserTask_4">
+        <bounds height="50.0" width="110.0" x="698.0" y="369.0"/>
+        <bpmnElement href="JM1.bpmn2#UserTask_4"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_IntermediateThrowEvent_5">
+        <bounds height="36.0" width="36.0" x="1680.0" y="342.0"/>
+        <bpmnElement href="JM1.bpmn2#IntermediateThrowEvent_5"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_UserTask_7">
+        <bounds height="59.0" width="110.0" x="1420.0" y="455.0"/>
+        <bpmnElement href="JM1.bpmn2#UserTask_7"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_IntermediateThrowEvent_6">
+        <bounds height="36.0" width="36.0" x="1578.0" y="408.0"/>
+        <bpmnElement href="JM1.bpmn2#IntermediateThrowEvent_6"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_UserTask_6">
+        <bounds height="79.0" width="121.0" x="1500.0" y="320.0"/>
+        <bpmnElement href="JM1.bpmn2#UserTask_6"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_EndEvent_6">
+        <bounds height="36.0" width="36.0" x="1632.0" y="482.0"/>
+        <bpmnElement href="JM1.bpmn2#EndEvent_6"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNShape" id="BPMNShape_DataObject_2">
+        <bounds height="65.0" width="36.0" x="1160.0" y="435.0"/>
+        <bpmnElement href="JM1.bpmn2#DataObject_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_1">
+        <waypoint x="88.0" y="149.0"/>
+        <waypoint x="88.0" y="265.0"/>
+        <waypoint x="200.0" y="265.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_1"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_StartEvent_1"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_ExclusiveGateway_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_2">
+        <waypoint x="251.0" y="265.0"/>
+        <waypoint x="290.0" y="265.0"/>
+        <waypoint x="290.0" y="264.0"/>
+        <waypoint x="310.0" y="264.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_2"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_ExclusiveGateway_1"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_UserTask_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_3">
+        <waypoint x="340.0" y="138.0"/>
+        <waypoint x="225.0" y="138.0"/>
+        <waypoint x="225.0" y="240.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_3"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_ExclusiveGateway_2"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_ExclusiveGateway_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_4">
+        <waypoint x="365.0" y="164.0"/>
+        <waypoint x="365.0" y="204.0"/>
+        <waypoint x="400.0" y="204.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_4"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_ExclusiveGateway_2"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_EndEvent_3"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_5">
+        <waypoint x="441.0" y="264.0"/>
+        <waypoint x="495.0" y="264.0"/>
+        <waypoint x="495.0" y="265.0"/>
+        <waypoint x="510.0" y="265.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_5"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_UserTask_1"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_EventBasedGateway_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_6">
+        <waypoint x="535.0" y="240.0"/>
+        <waypoint x="535.0" y="173.0"/>
+        <waypoint x="642.0" y="173.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_6"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_EventBasedGateway_1"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_IntermediateCatchEvent_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_7">
+        <waypoint x="561.0" y="265.0"/>
+        <waypoint x="622.0" y="265.0"/>
+        <waypoint x="622.0" y="260.0"/>
+        <waypoint x="642.0" y="260.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_7"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_EventBasedGateway_1"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_IntermediateCatchEvent_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_8">
+        <waypoint x="660.0" y="155.0"/>
+        <waypoint x="660.0" y="138.0"/>
+        <waypoint x="391.0" y="138.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_8"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_IntermediateCatchEvent_2"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_ExclusiveGateway_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_9">
+        <waypoint x="678.0" y="260.0"/>
+        <waypoint x="840.0" y="260.0"/>
+        <waypoint x="840.0" y="214.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_9"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_IntermediateCatchEvent_1"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_ManualTask_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_10">
+        <waypoint x="901.0" y="177.0"/>
+        <waypoint x="927.0" y="177.0"/>
+        <waypoint x="927.0" y="178.0"/>
+        <waypoint x="960.0" y="178.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_10"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_ManualTask_1"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_UserTask_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_DataOutputAssociation_1">
+        <waypoint x="960.0" y="178.0"/>
+        <waypoint x="943.0" y="178.0"/>
+        <waypoint x="943.0" y="227.0"/>
+        <bpmnElement href="JM1.bpmn2#DataOutputAssociation_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_11">
+        <waypoint x="1020.0" y="203.0"/>
+        <waypoint x="1020.0" y="227.0"/>
+        <waypoint x="1140.0" y="227.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_11"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_UserTask_2"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_EventBasedGateway_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_12">
+        <waypoint x="1165.0" y="202.0"/>
+        <waypoint x="1165.0" y="159.0"/>
+        <waypoint x="1240.0" y="159.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_12"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_EventBasedGateway_2"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_IntermediateCatchEvent_4"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_13">
+        <waypoint x="1165.0" y="253.0"/>
+        <waypoint x="1165.0" y="260.0"/>
+        <waypoint x="1240.0" y="260.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_13"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_EventBasedGateway_2"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_IntermediateCatchEvent_3"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_14">
+        <waypoint x="1276.0" y="260.0"/>
+        <waypoint x="1322.0" y="260.0"/>
+        <waypoint x="1322.0" y="260.0"/>
+        <waypoint x="1342.0" y="260.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_14"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_IntermediateCatchEvent_3"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_EndEvent_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_15">
+        <waypoint x="1276.0" y="159.0"/>
+        <waypoint x="1430.0" y="159.0"/>
+        <waypoint x="1430.0" y="159.0"/>
+        <waypoint x="1450.0" y="159.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_15"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_IntermediateCatchEvent_4"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_ServiceTask_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_DataOutputAssociation_2">
+        <waypoint x="1510.0" y="184.0"/>
+        <waypoint x="1510.0" y="207.0"/>
+        <waypoint x="1511.0" y="207.0"/>
+        <waypoint x="1511.0" y="227.0"/>
+        <bpmnElement href="JM1.bpmn2#DataOutputAssociation_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_16">
+        <waypoint x="1571.0" y="159.0"/>
+        <waypoint x="1602.0" y="159.0"/>
+        <waypoint x="1602.0" y="159.0"/>
+        <waypoint x="1620.0" y="159.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_16"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_ServiceTask_1"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_UserTask_3"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_17">
+        <waypoint x="1675.0" y="184.0"/>
+        <waypoint x="1675.0" y="226.0"/>
+        <waypoint x="1675.0" y="226.0"/>
+        <waypoint x="1675.0" y="242.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_17"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_UserTask_3"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_EndEvent_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_19">
+        <waypoint x="375.0" y="290.0"/>
+        <waypoint x="375.0" y="321.0"/>
+        <waypoint x="368.0" y="321.0"/>
+        <waypoint x="368.0" y="360.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_19"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_UserTask_1"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_IntermediateThrowEvent_1"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_21">
+        <waypoint x="386.0" y="378.0"/>
+        <waypoint x="489.0" y="378.0"/>
+        <waypoint x="489.0" y="394.0"/>
+        <waypoint x="510.0" y="394.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_21"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_IntermediateThrowEvent_1"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_ExclusiveGateway_3"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_18">
+        <waypoint x="561.0" y="394.0"/>
+        <waypoint x="678.0" y="394.0"/>
+        <waypoint x="678.0" y="394.0"/>
+        <waypoint x="698.0" y="394.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_18"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_ExclusiveGateway_3"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_UserTask_4"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_20">
+        <waypoint x="753.0" y="419.0"/>
+        <waypoint x="753.0" y="464.0"/>
+        <waypoint x="772.0" y="464.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_20"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_UserTask_4"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_IntermediateThrowEvent_3"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_23">
+        <waypoint x="1020.0" y="203.0"/>
+        <waypoint x="1020.0" y="387.0"/>
+        <waypoint x="1040.0" y="387.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_23"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_UserTask_2"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_IntermediateThrowEvent_4"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_24">
+        <waypoint x="1076.0" y="387.0"/>
+        <waypoint x="1130.0" y="387.0"/>
+        <waypoint x="1130.0" y="387.0"/>
+        <waypoint x="1150.0" y="387.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_24"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_IntermediateThrowEvent_4"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_ManualTask_2"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_28">
+        <waypoint x="535.0" y="420.0"/>
+        <waypoint x="535.0" y="446.0"/>
+        <waypoint x="535.0" y="446.0"/>
+        <waypoint x="535.0" y="478.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_28"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_ExclusiveGateway_3"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_EndEvent_4"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_29">
+        <waypoint x="1260.0" y="387.0"/>
+        <waypoint x="1314.0" y="387.0"/>
+        <waypoint x="1314.0" y="387.0"/>
+        <waypoint x="1330.0" y="387.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_29"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_ManualTask_2"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_ExclusiveGateway_5"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_30">
+        <waypoint x="1355.0" y="362.0"/>
+        <waypoint x="1355.0" y="359.0"/>
+        <waypoint x="1500.0" y="359.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_30"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_ExclusiveGateway_5"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_UserTask_6"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_31">
+        <waypoint x="1621.0" y="359.0"/>
+        <waypoint x="1663.0" y="359.0"/>
+        <waypoint x="1663.0" y="360.0"/>
+        <waypoint x="1680.0" y="360.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_31"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_UserTask_6"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_IntermediateThrowEvent_5"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_32">
+        <waypoint x="1530.0" y="484.0"/>
+        <waypoint x="1596.0" y="484.0"/>
+        <waypoint x="1596.0" y="444.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_32"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_UserTask_7"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_IntermediateThrowEvent_6"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_33">
+        <waypoint x="1355.0" y="413.0"/>
+        <waypoint x="1355.0" y="484.0"/>
+        <waypoint x="1420.0" y="484.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_33"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_ExclusiveGateway_5"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_UserTask_7"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_SequenceFlow_34">
+        <waypoint x="1530.0" y="484.0"/>
+        <waypoint x="1604.0" y="484.0"/>
+        <waypoint x="1604.0" y="500.0"/>
+        <waypoint x="1632.0" y="500.0"/>
+        <bpmnElement href="JM1.bpmn2#SequenceFlow_34"/>
+        <sourceElement href="JM1.bpmn2#BPMNShape_UserTask_7"/>
+        <targetElement href="JM1.bpmn2#BPMNShape_EndEvent_6"/>
+      </planeElement>
+      <planeElement xsi:type="bpmndi:BPMNEdge" id="BPMNEdge_DataOutputAssociation_3">
+        <waypoint x="1420.0" y="484.0"/>
+        <waypoint x="1320.0" y="484.0"/>
+        <waypoint x="1320.0" y="467.0"/>
+        <waypoint x="1196.0" y="467.0"/>
+        <bpmnElement href="JM1.bpmn2#DataOutputAssociation_3"/>
+      </planeElement>
+      <bpmnElement href="JM1.bpmn2#Process_1"/>
+    </plane>
+  </diagrams>
+</bpmn2:Definitions>

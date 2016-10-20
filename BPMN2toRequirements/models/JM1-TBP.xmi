@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:taskbusinessprocess="http://taskbusinessprocess/1.0">
+  <taskbusinessprocess:Task name="Process_1" text="Send a contract" actor="The system" sequentialChildren="/1 /5 /10 /12 /13 /16 /21"/>
+  <taskbusinessprocess:Task name="UserTask_6" text="Refuse the gateway establishment request" actor="The education center's responsible" sequentialParent="/0" followingEvent="/2">
+    <preconditions text="The contract is no accepted"/>
+  </taskbusinessprocess:Task>
+  <taskbusinessprocess:MessageEvent name="IntermediateThrowEvent_5" afterTask="/1" text="Establishment refusal"/>
+  <taskbusinessprocess:Task name="ManualTask_1" text="Instantiate the gateway agreement contract" actor="The administrator" sequentialParent="/5" previousEvent="/4"/>
+  <taskbusinessprocess:MessageEvent name="IntermediateCatchEvent_1" beforeTask="/3" text="Request accepted"/>
+  <taskbusinessprocess:Task name="ParentManualTask_1" text="Perform the following tasks" actor="The administrator" sequentialChildren="/3 /6" sequentialParent="/0"/>
+  <taskbusinessprocess:Task name="UserTask_2" text="Send the contract" actor="The administrator" sequentialParent="/5" followingEvent="/8" artifactsUsed="/7"/>
+  <taskbusinessprocess:DataObject name="DataObject_1" text="The contract digitally signed by TicTae"/>
+  <taskbusinessprocess:MessageEvent name="IntermediateThrowEvent_4" beforeTask="/12" afterTask="/6" text="Contract received"/>
+  <taskbusinessprocess:Task name="UserTask_3" text="Establish the gateway" actor="The administrator" sequentialParent="/21"/>
+  <taskbusinessprocess:Task name="UserTask_4" text="Accept the request" actor="The education center's responsible" sequentialParent="/0" followingEvent="/11">
+    <preconditions text="The request is accepted"/>
+  </taskbusinessprocess:Task>
+  <taskbusinessprocess:MessageEvent name="IntermediateThrowEvent_3" afterTask="/10" text="Request accepted"/>
+  <taskbusinessprocess:Task name="ManualTask_2" text="Read and analyze the contract" actor="The education center's responsible" sequentialParent="/0" previousEvent="/8"/>
+  <taskbusinessprocess:Task name="UserTask_7" text="Send the signed contract" actor="The education center's responsible" sequentialParent="/0" followingEvent="/15" artifactsUsed="/14">
+    <preconditions text="The contract is accepted"/>
+  </taskbusinessprocess:Task>
+  <taskbusinessprocess:DataObject name="DataObject_2" text="The contract signed by TicTae and the education center"/>
+  <taskbusinessprocess:MessageEvent name="IntermediateThrowEvent_6" afterTask="/13" text="Establishment approval"/>
+  <taskbusinessprocess:Task name="UserTask_1" text="Send the TicTae gateway request" actor="The administrator" sequentialParent="/0" followingEvent="/17"/>
+  <taskbusinessprocess:MessageEvent name="IntermediateThrowEvent_1" afterTask="/16" text="Gateway request"/>
+  <taskbusinessprocess:Task name="ServiceTask_1" text="Store the contract" actor="The administrator" sequentialParent="/21" previousEvent="/20" artifactsUsed="/19"/>
+  <taskbusinessprocess:DataStore name="_DataStoreReference_2" text="The TicTae database"/>
+  <taskbusinessprocess:MessageEvent name="IntermediateCatchEvent_4" beforeTask="/18" text="Establishment approval"/>
+  <taskbusinessprocess:Task name="ParentServiceTask_1" text="Perform the following tasks" actor="The administrator" sequentialChildren="/18 /9" sequentialParent="/0"/>
+  <taskbusinessprocess:MessageEvent name="IntermediateCatchEvent_3" text="Establishment refusal"/>
+  <taskbusinessprocess:TimerEvent name="IntermediateCatchEvent_2" text="After 7 days"/>
+</xmi:XMI>

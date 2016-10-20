@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:taskbusinessprocess="http://taskbusinessprocess/1.0">
+  <taskbusinessprocess:Task name="Process_1" text="Notify the changes in the education center" actor="The system" sequentialChildren="/1 /10 /12 /13 /15 /16"/>
+  <taskbusinessprocess:Task name="ExclusiveGateway_1" text="Notify the changes" actor="The education center's responsible" alternativeChildren="/4 /8" sequentialParent="/0" previousEvent="/9"/>
+  <taskbusinessprocess:Task name="Task_1" text="Check the contract" actor="The education center's responsible" sequentialParent="/4" artifactsUsed="/3">
+    <preconditions text="The contract is modified"/>
+  </taskbusinessprocess:Task>
+  <taskbusinessprocess:DataStore name="_DataStoreReference_2" text="Education center's database"/>
+  <taskbusinessprocess:Task name="ParentTask_1" text="Perform generic task (Check the contract - Modify the contract with the new changes - Notify the changes appending the contract)" actor="The education center's responsible" sequentialChildren="/2 /5 /6" alternativeParent="/1"/>
+  <taskbusinessprocess:Task name="Task_2" text="Modify the contract with the new changes" actor="The education center's responsible" sequentialParent="/4"/>
+  <taskbusinessprocess:Task name="Task_3" text="Notify the changes appending the contract" actor="The education center's responsible" sequentialParent="/4" artifactsUsed="/7"/>
+  <taskbusinessprocess:DataObject name="DataObject_1" text="The changed contract signed by TicTae"/>
+  <taskbusinessprocess:Task name="Task_4" text="Notify the changes directly" actor="The education center's responsible" alternativeParent="/1">
+    <preconditions text="The contract is not modified"/>
+  </taskbusinessprocess:Task>
+  <taskbusinessprocess:MessageEvent name="StartEvent_1" beforeTask="/1" text="Change in the education center"/>
+  <taskbusinessprocess:Task name="ServiceTask_1" text="Update the contract" actor="The administrator" sequentialParent="/0" artifactsUsed="/11"/>
+  <taskbusinessprocess:DataStore name="_DataStoreReference_3" text="TicTae database"/>
+  <taskbusinessprocess:Task name="Task_7" text="Update the contract" actor="The education center's responsible" sequentialParent="/0" artifactsUsed="/3">
+    <preconditions text="The contract is received"/>
+  </taskbusinessprocess:Task>
+  <taskbusinessprocess:Task name="UserTask_1" text="Send the agreement on the changes to the education center" actor="The administrator" sequentialParent="/0" artifactsUsed="/14"/>
+  <taskbusinessprocess:DataObject name="DataObject_3" text="The contract signed by TicTae"/>
+  <taskbusinessprocess:Task name="Task_8" text="Cancel the gateway until further notice" actor="The administrator" sequentialParent="/0">
+    <preconditions text="The changes are not accepted"/>
+  </taskbusinessprocess:Task>
+  <taskbusinessprocess:Task name="Task_5" text="Analyze the changes" actor="The administrator" sequentialParent="/0"/>
+</xmi:XMI>

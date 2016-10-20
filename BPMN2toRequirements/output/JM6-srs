@@ -1,0 +1,9 @@
+	R1. The system must process a LOPD update or modification.	
+	R1.1. The administrator must analyze the LOPD changes when the message "lOPD changed" is received.	
+	R1.2. The administrator must cancel the gateway until further notice if the gateway changes are not accepted.	
+	R1.3. The administrator must make gateway changes if the gateway changes are accepted.	
+	R1.4. The administrator must notify the changes in LOPD and the gateway to the education center.	
+	R1.5. The education center's responsible must analyze the gateway changes.	
+	R1.6. The education center's responsible must analyze the LOPD changes.	
+	
+

@@ -1,0 +1,9 @@
+	R1. The system must perform process.	
+	R1.1. The admin must perform generic task (Perform task one - Perform task 2).	
+	R1.1.1. The admin must perform task one.	
+	R1.1.2. The admin must perform task 2.	
+	R1.1.2.1. If the message "stop message" is received while performing task 2, this task must be cancelled and the admin must perform interrupting task.	
+	R1.1.2.2. If the error "system exception" happens while performing task 2, this task must be cancelled and the admin must notify exception. As a result, the signal "error occurred" must be sent.	
+	R1.1.2.3. After 1 hour while performing task 2, the admin must perform undoing task.	
+	
+

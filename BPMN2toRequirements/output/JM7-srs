@@ -1,0 +1,17 @@
+	R1. The system must allow the registration of job appliers and the introduction of their CV.	
+	R1.1. The TicTae system must notify the correct registration.	
+	R1.2. The job applier must introduce academic data.	
+		To do so, one of the following alternatives must be chosen:
+	R1.2.1. The job applier must introduce data without official support.	
+	R1.2.2. The job applier must link the academic record through the gateway.	
+	R1.2.3. The job applier must perform generic task (Append the academic record digitally signed by the Education Center - Validate the record's electronic sign).	
+	R1.2.3.1. The job applier must append the academic record digitally signed by the Education Center.	
+	R1.2.3.2. The job applier must validate the record's electronic sign.	
+	R1.3. The TicTae system must notify the correctness of the professional data.	
+	R1.4. The TicTae system must notify the correctness of the academic data if the academic data is correct.	
+	R1.5. The job applier must introduce CV professional data.	
+	R1.6. The job applier must perform generic task (Make a TicTae registration request - Introduce personal data).	
+	R1.6.1. The job applier must make a TicTae registration request.	
+	R1.6.2. The job applier must introduce personal data.	
+	
+

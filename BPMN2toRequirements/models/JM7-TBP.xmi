@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:taskbusinessprocess="http://taskbusinessprocess/1.0">
+  <taskbusinessprocess:Task name="Process_1" text="Allow the registration of job appliers and the introduction of their CV" actor="The system" sequentialChildren="/1 /2 /8 /10 /11 /13"/>
+  <taskbusinessprocess:Task name="ScriptTask_1" text="Notify the correct registration" actor="The TicTae system" sequentialParent="/0"/>
+  <taskbusinessprocess:Task name="ExclusiveGateway_1" text="Introduce academic data" actor="The job applier" alternativeChildren="/3 /4 /6" sequentialParent="/0"/>
+  <taskbusinessprocess:Task name="UserTask_4" text="Introduce data without official support" actor="The job applier" alternativeParent="/2"/>
+  <taskbusinessprocess:Task name="UserTask_5" text="Link the academic record through the gateway" actor="The job applier" alternativeParent="/2"/>
+  <taskbusinessprocess:Task name="UserTask_6" text="Append the academic record digitally signed by the Education Center" actor="The job applier" sequentialParent="/6"/>
+  <taskbusinessprocess:Task name="ParentUserTask_6" text="Perform generic task (Append the academic record digitally signed by the Education Center - Validate the record's electronic sign)" actor="The job applier" sequentialChildren="/5 /7" alternativeParent="/2"/>
+  <taskbusinessprocess:Task name="ScriptTask_3" text="Validate the record's electronic sign" actor="The job applier" sequentialParent="/6"/>
+  <taskbusinessprocess:Task name="ScriptTask_2" text="Notify the correctness of the professional data" actor="The TicTae system" sequentialParent="/0"/>
+  <taskbusinessprocess:Task name="UserTask_2" text="Introduce personal data" actor="The job applier" sequentialParent="/13"/>
+  <taskbusinessprocess:Task name="ScriptTask_4" text="Notify the correctness of the academic data" actor="The TicTae system" sequentialParent="/0">
+    <preconditions text="The academic data is correct"/>
+  </taskbusinessprocess:Task>
+  <taskbusinessprocess:Task name="UserTask_3" text="Introduce CV professional data" actor="The job applier" sequentialParent="/0"/>
+  <taskbusinessprocess:Task name="UserTask_1" text="Make a TicTae registration request" actor="The job applier" sequentialParent="/13"/>
+  <taskbusinessprocess:Task name="ParentUserTask_1" text="Perform generic task (Make a TicTae registration request - Introduce personal data)" actor="The job applier" sequentialChildren="/12 /9" sequentialParent="/0"/>
+</xmi:XMI>
