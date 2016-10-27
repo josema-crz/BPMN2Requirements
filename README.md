@@ -15,7 +15,7 @@ This repository is structured as follows:
 
 The execution process is as follows:
 
-1. The BPMN models are placed in the models folder. There is currently no support for importing BPMN diagrams in other formats. Instead, models conforming the BPMN2 metamodel must be provided. These models can be easily defined using the Eclipse BPMN2 Modeler[2].
+1. The BPMN models are placed into the models folder. There is currently no support for importing BPMN diagrams in other formats. Instead, models conforming the BPMN2 metamodel must be provided. These models can be easily defined using the Eclipse BPMN2 Modeler[2].
 2. The process is launched using the launch.xml ANT script. The script contains the necessary instructions.
 3. The textual requirements are generated in the output folder.
 
